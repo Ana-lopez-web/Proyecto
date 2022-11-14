@@ -1,0 +1,5 @@
+Requisitos Previos 
+ Un servidor Ubuntu 20.04 con un usuario administrativo no root y un firewall configurado con UFW.
+ OpenSSH instalado y actualizado
+ 
+ 
