@@ -4,11 +4,14 @@
 
 <pre><code>sudo apt update && sudo apt upgrade</code></pre>
 
-Comando instalacion MySql 
+### Comando instalacion MySql 
 <pre><code>sudo apt install mysql-server mysql-client --fix-broken --fix-missing</code></pre>
 
-Vemos la versión:
+### Vemos la versión:
 <pre><code> MySql mysql --version</code></pre>
+
+### Protecion del servidor
+
 Una vez completada la instalación, puede proteger el servidor MySQL ejecutando el siguiente comando:
 
 <pre><code>sudo mysql_secure_installation</code></pre>
@@ -17,22 +20,39 @@ Pasará por un asistente de preguntas para asegurar el servidor MySQL. Siga las 
 
 La contraseña configurada anteriormente para las cuentas raíz solo se usa para usuarios remotos. Para iniciar sesión desde el mismo sistema, escriba mysql en la terminal: Contraseña: Zxc%1234
 
-Accedemos a MySql 
+### Acceso a MySql 
 <pre><code>sudo mysql</code></pre>
 
-Cramos una base de datos llamada 'alodb':
+Accedemos a Mysql y creamos la base de datos y un usuario admin
+### Creación de una base de datos
+
+Con el siguiente comando crearemos la base de datos llamada 'alodb':
 
  mysql><pre><code>CREATE DATABASE mydb;</code></pre>
 
+### Creación de un usuario 
+
 Luego, cramos un usuario llamado 'myuseralo' accesible solo desde 'localhost':
 
-    mysql> <pre><code>CREATE USER 'myuseralo'@'localhost' IDENTIFIED BY 'secure_password_';</code></pre>
-Otorguo permisos de base de datos al usuario:
+<pre><code>CREATE USER 'myuseralo'@'localhost' IDENTIFIED BY 'secure_password_';</code></pre>
 
-    mysql> GRANT ALL ON alodb.* to 'myuseralo'@'localhost'; 
+Otorgar permisos de acceso a la  base de datos al usuario creado :
+
+ <pre><code>GRANT ALL ON alodb.* to 'myuseralo'@'localhost';</code></pre>
+
 Aplicar los cambios de permisos en tiempo de ejecución:
 
-    mysql> FLUSH PRIVILEGES; 
-Administrar el servicio MySQL Para comprobar el estado del servidor de la base de datos:
+<pre><code>FLUSH PRIVILEGES;</code></pre>
 
-Desinstalar MySql sudo apt autoremove --purge mysql-server sudo apt-get remove --purge mysql-server mysql-client mysql-common sudo apt-get autoclean sudo apt-get autoremove sudo rm -rf /var/lib/mysql
+### Administrar el servicio MySQL 
+Para comprobar el estado del servidor de la base de datos:
+<pre><code>sudo systemctl status mysql </code></pre>
+Para iniciar el servidor MySQL:
+<pre><code>sudo systemctl start mysql</code></pre>
+Para detener el servidor MySQL:
+<pre><code>sudo systemctl stop mysql </code></pre>
+
+### Desinstalar (eliminar)MySql 
+<pre><code>sudo apt purge mysql-server-* </code></pre>
+<pre><code>rm -rf /etc/mysql</code></pre> 
+<pre><code>rm -rf /var/lib/mysql </code></pre>
